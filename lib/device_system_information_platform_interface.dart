@@ -8,7 +8,8 @@ abstract class DeviceSystemInformationPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static DeviceSystemInformationPlatform _instance = MethodChannelDeviceSystemInformation();
+  static DeviceSystemInformationPlatform _instance =
+      MethodChannelDeviceSystemInformation();
 
   /// The default instance of [DeviceSystemInformationPlatform] to use.
   ///
@@ -25,5 +26,10 @@ abstract class DeviceSystemInformationPlatform extends PlatformInterface {
 
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<String?> getUniqueIdentificator() {
+    throw UnimplementedError(
+        'getUniqueIdentificator() has not been implemented.');
   }
 }

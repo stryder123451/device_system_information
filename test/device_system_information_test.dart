@@ -7,23 +7,29 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockDeviceSystemInformationPlatform
     with MockPlatformInterfaceMixin
     implements DeviceSystemInformationPlatform {
-
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
+
+  @override
+  Future<String?> getUniqueIdentificator() async {
+    return await DeviceSystemInformation.getUniqueIdentificator();
+  }
 }
 
 void main() {
-  final DeviceSystemInformationPlatform initialPlatform = DeviceSystemInformationPlatform.instance;
+  final DeviceSystemInformationPlatform initialPlatform =
+      DeviceSystemInformationPlatform.instance;
 
   test('$MethodChannelDeviceSystemInformation is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelDeviceSystemInformation>());
+    expect(
+        initialPlatform, isInstanceOf<MethodChannelDeviceSystemInformation>());
   });
 
   test('getPlatformVersion', () async {
-    DeviceSystemInformation deviceSystemInformationPlugin = DeviceSystemInformation();
-    MockDeviceSystemInformationPlatform fakePlatform = MockDeviceSystemInformationPlatform();
+    MockDeviceSystemInformationPlatform fakePlatform =
+        MockDeviceSystemInformationPlatform();
     DeviceSystemInformationPlatform.instance = fakePlatform;
 
-    expect(await deviceSystemInformationPlugin.getPlatformVersion(), '42');
+    expect(await DeviceSystemInformation.getPlatformVersion(), '42');
   });
 }
